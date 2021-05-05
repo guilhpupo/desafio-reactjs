@@ -7,8 +7,11 @@ import Repository, { RepositoryProps } from "components/Repository";
 import { findRepositories } from "services/RepositoryService";
 import { findUserData } from "services/UserService";
 import { countStars, sortRepos } from "utils";
+import MediaMatch from "utils/MediaMatch";
 
 import { Wrapper, RepositoriesSection, RepositoriesList } from "./styles";
+
+import FullScreenMenu from "components/FullScreenMenu";
 
 const Profile = () => {
   const [userData, setUserData] = useState<UserProps>({
@@ -54,7 +57,13 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      <LeftMenu {...userData} />
+      <MediaMatch greaterThan="medium">
+        <LeftMenu {...userData} />
+      </MediaMatch>
+
+      <MediaMatch lessThan="medium">
+        <FullScreenMenu {...userData} />
+      </MediaMatch>
 
       <RepositoriesSection>
         {!!repositoriesError && <p>{repositoriesError}</p>}

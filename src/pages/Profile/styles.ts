@@ -3,7 +3,7 @@ import media from "styled-media-query";
 
 export const Wrapper = styled.main`
   ${() => css`
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
 
     ${media.lessThan("medium")`
@@ -14,10 +14,17 @@ export const Wrapper = styled.main`
 `;
 
 export const RepositoriesSection = styled.section`
-  width: 100%;
-  height: 100vh;
-  padding: 3rem 12rem 3rem 7rem;
-  overflow: auto;
+  ${({ theme }) => css`
+    width: 100%;
+    height: 100vh;
+    padding: 3rem 12rem 3rem 7rem;
+    overflow: auto;
+
+    ${media.lessThan("medium")`
+        padding: 1rem;
+        z-index: ${theme.layers.base};
+      `}
+  `}
 `;
 
 export const RepositoriesList = styled.ul`

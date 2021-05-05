@@ -13,11 +13,8 @@ export const Wrapper = styled.div`
 
     padding: ${theme.spacings.small};
 
-
-
     ${media.lessThan("medium")`
       width:100%;
-      min-width: 0rem;
     `}
   `}
 `;
@@ -63,7 +60,7 @@ export const DevNumbersList = styled.ul`
   ${({ theme }) => css`
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-bottom: ${theme.spacings.small};
   `}
 `;
