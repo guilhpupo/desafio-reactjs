@@ -57,11 +57,11 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      <MediaMatch greaterThan="medium">
+      <MediaMatch showOnDesktop>
         <LeftMenu {...userData} />
       </MediaMatch>
 
-      <MediaMatch lessThan="medium">
+      <MediaMatch showOnMobo>
         <FullScreenMenu {...userData} />
       </MediaMatch>
 

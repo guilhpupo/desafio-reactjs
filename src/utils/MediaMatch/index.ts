@@ -1,25 +1,26 @@
 import styled, { css } from "styled-components";
-import media, { DefaultBreakpoints } from "styled-media-query";
-
-type breakpoint = keyof DefaultBreakpoints;
 
 export type MediaMatchProps = {
-  greaterThan?: breakpoint;
-  lessThan?: breakpoint;
+  showOnDesktop?: boolean;
+  showOnMobo?: boolean;
 };
 
 const mediaMatchModifiers = {
-  greaterThan: (size: breakpoint) => css`
-    ${media.greaterThan(size)`display: flex`}
+  showOnDesktop: () => css`
+    @media(min-width: 769px){
+      display: flex;
+    }
   `,
-  lessThan: (size: breakpoint) => css`
-    ${media.lessThan(size)`display: flex`}
+  showOnMobo: () => css`
+    @media(max-width: 768px){
+      display: flex;
+    }
   `,
 };
 export default styled.div<MediaMatchProps>`
-  ${({ lessThan, greaterThan }) => css`
+  ${({ showOnDesktop = false, showOnMobo = false }) => css`
     display: none;
-    ${!!greaterThan && mediaMatchModifiers.greaterThan(greaterThan)}
-    ${!!lessThan && mediaMatchModifiers.lessThan(lessThan)}
+    ${!!showOnDesktop && mediaMatchModifiers.showOnDesktop()}
+    ${!!showOnMobo && mediaMatchModifiers.showOnMobo()}
   `}
 `;
